@@ -1,14 +1,14 @@
 import { RouterModule, Routes } from '@nestjs/core';
-import { PostController } from '../controllers/post.controller';
+import { UserController } from '../controllers/user.controller';
 
 const routes: Routes = [
   {
-    path: 'posts',
-    module: PostController,
+    path: 'user',
+    module: UserController,
     children: [
       {
         path: ':id',
-        module: PostController,
+        module: UserController,
       },
     ],
   },
