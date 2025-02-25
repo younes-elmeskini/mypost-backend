@@ -1,17 +1,14 @@
-import express from 'express';
-import cors from 'cors';
-
-const app = express();
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
 const PORT = 3000;
 
-app.use(cors());
-app.use(express.json());
+async function bootstrap() {
+    const app = await NestFactory.create(AppModule);
+    app.enableCors();
+    
+    await app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    });
+}
 
-
-app.get("/", (req: express.Request, res: express.Response) => {
-    res.send("Hello, TypeScript Backend!");
-});
-
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+bootstrap();
